@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Hudson Smith — Data & Statistics</title>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div id="page-fade"></div>
+    <header class="site-header">
+
+        <!-- TOP UTILITY BAR -->
+        <div class="utility-bar">
+            <div class="utility-inner">
+              <span id="current-date"></span>
+              <span class="utility-right">Applied Mathematics & Data Science</span>
+            </div>
+          </div>
+    
+      
+        <!-- MASTHEAD -->
+        <div class="masthead">
+          <h1 class="site-title">Hudson Smith</h1>
+        </div>
+      
+        <!-- NAVIGATION -->
+        <nav class="main-nav">
+          <a href="#feature">Projects</a>
+          <a href="#coursework">Coursework</a>
+          <a href="#projects">Analysis</a>
+          <a href="#contact">Contact</a>
+        </nav>
+
+        <!-- LIVE BAR-->
+        <div class="live-bar">
+            <div class="live-left">
+              <span class="live-dot"></span>
+              <span class="live-label">LIVE</span>
+            </div>
+          
+            <div class="live-center">
+                <span class="live-inline">
+                  <span id="live-text" class="live-message"></span>
+                  <span id="live-time" class="live-time"></span>
+                </span>
+              </div>
+          </div>
+          
+          
+      
+      </header>
+  <main class="magazine">
+
+    <!-- PAGE 1: COVER -->
+    <section class="page cover" id="bio">
+      <div class="hero">
+        <img src="assets/images/me.jpeg" alt="Photo of Hudson" class="hero-img">
+    
+        <div class="content bio-content">
+          <h2 class="bio-title">Hudson Smith</h2>
+    
+          <p>Professional Gooner</p>
+    
+          <p class="lede">
+            I’m an applied mathematics student focused on applied data analysis,
+            forecasting, and interpretable models using real-world data.
+          </p>
+    
+          <p>
+            My work centers on turning messy operational data into clear,
+            actionable insights. I’m especially interested in demand
+            forecasting, statistical modeling, and methods that balance
+            accuracy with interpretability.
+          </p>
+    
+          <p>
+            Coursework includes probability theory, linear algebra, and
+            real analysis, alongside hands-on work in Python using pandas,
+            NumPy, scikit-learn, and PyTorch.
+          </p>
+        </div>
+      </div>
+    </section>
+    
+
+    <!-- PAGE 2: FEATURE PROJECT -->
+    <section class="page" id="feature">
+      <div class="content">
+        <h2>Forecasting Attendance at a Regional Waterpark</h2>
+        <p class="meta">8 min read · Regression · Forecasting</p>
+        <p class="lede">
+          Regional attractions depend on accurate demand forecasts.
+          In this project, I built predictive models to estimate daily
+          ticket sales using weather, seasonality, and calendar features.
+        </p>
+    
+        <!-- 👇 ADD GRAPHS HERE -->
+      <div class="project-side-by-side">
+        <section class="project-graphs">
+          <figure>
+            <img src="assets/graphs/waterpark/ticket_sales_vs_year.png"
+                 alt="Ticket sales per year showing COVID impact">
+            <figcaption>
+              COVID-19 introduced a structural break in ticket demand, motivating
+              year-level controls.
+            </figcaption>
+          </figure>
+    
+          <figure>
+            <img src="assets/graphs/waterpark/ticket_sales_year.png"
+                 alt="Ticket sales by month">
+            <figcaption>
+              Strong seasonal patterns justified month-based feature encoding.
+            </figcaption>
+          </figure>
+    
+          <figure>
+            <img src="assets/graphs/waterpark/ticket_sales_vs_temp.png"
+                 alt="Ticket sales vs temperature">
+            <figcaption>
+              Ticket sales increase with temperature, with diminishing returns.
+            </figcaption>
+          </figure>
+    
+          <figure>
+            <img src="assets/graphs/waterpark/predicted_ticket_sales_RMSE.png"
+                 alt="RMSE comparison across models">
+            <figcaption>
+              Linear regression outperformed a neural network baseline on test RMSE.
+            </figcaption>
+          </figure>
+        </section>
+      
+    
+        <aside class="project-info">
+          <h3>Project Details</h3>
+      
+          <p>
+            This project focuses on forecasting daily ticket sales for a regional
+            waterpark using weather, seasonal, and calendar features.
+          </p>
+      
+          <ul>
+            <li><strong>Models:</strong> Linear Regression, Neural Network</li>
+            <li><strong>Metrics:</strong> RMSE, R²</li>
+            <li><strong>Key Insight:</strong> Feature engineering mattered more than model complexity</li>
+            <li><strong>Data:</strong> Daily ticket sales + weather</li>
+          </ul>
+        </aside>
+      
+      </div>
+    </section>
+    
+
+    <!-- PAGE 3: MORE PROJECTS -->
+    <section class="page" id="projects">
+      <div class="content">
+        <h2>More Analysis</h2>
+
+        <article>
+          <h3>Statistical Modeling & CLT Simulations</h3>
+          <p>
+            Explored convergence, consistency, and asymptotic behavior
+            of estimators through simulation and theory.
+          </p>
+        </article>
+
+        <article>
+          <h3>Predictive Modeling with PyTorch</h3>
+          <p>
+            Implemented regression models using PyTorch to compare
+            classical and neural approaches on tabular data.
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <!-- PAGE 4: COURSEWORK -->
+    <section class="page" id="coursework">
+      <div class="content">
+        <h2>Coursework & Tools</h2>
+
+        <p><strong>Mathematics:</strong> Probability, Linear Algebra, Real Analysis</p>
+        <p><strong>Data:</strong> pandas, NumPy, scikit-learn, PyTorch</p>
+        <p><strong>Tools:</strong> Git, GitHub, VS Code, Jupyter</p>
+      </div>
+    </section>
+
+    <!-- PAGE 5: CONTACT -->
+    <section class="page" id="contact">
+      <div class="content">
+        <h2>Contact</h2>
+
+        <p>
+          <a href="assets/resume.pdf" target="_blank">Resume (PDF)</a><br>
+          <a href="https://github.com/yourusername" target="_blank">GitHub</a><br>
+          <a href="mailto:youremail@email.com">Email</a>
+        </p>
+      </div>
+    </section>
+
+  </main>
+  <script>
+    const dateElement = document.getElementById("current-date");
+  
+    const today = new Date();
+    const options = {
+      weekday: "long",
+      month: "long",
+      day: "numeric",
+      year: "numeric"
+    };
+  
+    dateElement.textContent = today.toLocaleDateString("en-US", options);
+  </script>
+
+<script>
+    const liveMessages = [
+      "Rock Climbing at GSF",
+      "Studying probability and complex analysis",
+      "Building data projects in Python",
+      "Applying for data analytics internships",
+      "Pumping Iron at RSF",
+    ];
+  
+    let liveIndex = 0;
+    const liveTextEl = document.getElementById("live-text");
+    const liveTimeEl = document.getElementById("live-time");
+    let startTime;
+  
+    function randomMinutesAgo(min = 1, max = 30) {
+      return Math.floor(Math.random() * (max - min + 1)) + min;
+    }
+  
+    function updateTime() {
+      const minutes = Math.floor((Date.now() - startTime) / 60000);
+      liveTimeEl.textContent =
+        minutes <= 0 ? "Just now" : `${minutes}m ago`;
+    }
+  
+    if (liveTextEl && liveTimeEl) {
+      // initial content
+      liveTextEl.textContent = liveMessages[0];
+      startTime = Date.now() - randomMinutesAgo() * 60000;
+      updateTime();
+  
+      // rotate messages
+      setInterval(() => {
+        liveTextEl.classList.add("fade-out");
+  
+        setTimeout(() => {
+          liveIndex = (liveIndex + 1) % liveMessages.length;
+          liveTextEl.textContent = liveMessages[liveIndex];
+  
+          startTime = Date.now() - randomMinutesAgo() * 60000;
+          updateTime();
+  
+          liveTextEl.classList.remove("fade-out");
+        }, 400);
+      }, 5000);
+  
+      // update "Xm ago" every minute
+      setInterval(updateTime, 60000);
+    }
+  </script>
+  
+  <script>
+    const overlay = document.getElementById("page-fade");
+  
+    document.querySelectorAll(".main-nav a").forEach(link => {
+      link.addEventListener("click", e => {
+        const targetId = link.getAttribute("href");
+        const target = document.querySelector(targetId);
+        if (!target) return;
+  
+        e.preventDefault();
+  
+        overlay.classList.add("active");
+  
+        // force a paint frame
+        requestAnimationFrame(() => {
+          setTimeout(() => {
+            target.scrollIntoView({
+              behavior: "smooth",
+              block: "start"
+            });
+  
+            setTimeout(() => {
+              overlay.classList.remove("active");
+            }, 600);
+          }, 120);
+        });
+      });
+    });
+  </script>
+  
+  
+
+</body>
+</html>
