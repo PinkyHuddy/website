@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Hudson Smith — Data & Statistics</title>
@@ -27,14 +28,13 @@
       
         <!-- MASTHEAD -->
         <div class="masthead">
-          <h1 class="site-title">Hudson Smith</h1>
+          <h1 class="site-title">The Hudson Smith Times</h1>
         </div>
       
         <!-- NAVIGATION -->
         <nav class="main-nav">
           <a href="#feature">Projects</a>
           <a href="#coursework">Coursework</a>
-          <a href="#projects">Analysis</a>
           <a href="#contact">Contact</a>
         </nav>
 
@@ -50,8 +50,21 @@
                   <span id="live-text" class="live-message"></span>
                   <span id="live-time" class="live-time"></span>
                 </span>
-              </div>
-          </div>
+            </div>
+            <div class="live-icons">
+              <a class="footer-link icon-link" href="assets/resume/resume_for_website.pdf" target="_blank" aria-label="Resume">
+                <i class="fa-solid fa-file-lines"></i>
+              </a>
+            
+              <a class="footer-link icon-link" href="https://github.com/PinkyHuddy" target="_blank" aria-label="GitHub">
+                <i class="fa-brands fa-github"></i>
+              </a>
+            
+              <a class="footer-link icon-link" href="mailto:husmith@berkeley.edu" aria-label="Email">
+                <i class="fa-solid fa-envelope"></i>
+              </a>
+            </div>
+        </div>
           
           
       
@@ -65,8 +78,6 @@
     
         <div class="content bio-content">
           <h2 class="bio-title">Hudson Smith</h2>
-    
-          <p>Professional Gooner</p>
     
           <p class="lede">
             I’m an applied mathematics student focused on applied data analysis,
@@ -90,97 +101,108 @@
     </section>
     
 
-    <!-- PAGE 2: FEATURE PROJECT -->
-    <section class="page" id="feature">
-      <div class="content">
-        <h2>Forecasting Attendance at a Regional Waterpark</h2>
-        <p class="meta">8 min read · Regression · Forecasting</p>
-        <p class="lede">
-          Regional attractions depend on accurate demand forecasts.
-          In this project, I built predictive models to estimate daily
-          ticket sales using weather, seasonality, and calendar features.
-        </p>
-    
-        <!-- 👇 ADD GRAPHS HERE -->
-      <div class="project-side-by-side">
-        <section class="project-graphs">
-          <figure>
-            <img src="assets/graphs/waterpark/ticket_sales_vs_year.png"
-                 alt="Ticket sales per year showing COVID impact">
-            <figcaption>
-              COVID-19 introduced a structural break in ticket demand, motivating
-              year-level controls.
-            </figcaption>
-          </figure>
-    
-          <figure>
-            <img src="assets/graphs/waterpark/ticket_sales_year.png"
-                 alt="Ticket sales by month">
-            <figcaption>
-              Strong seasonal patterns justified month-based feature encoding.
-            </figcaption>
-          </figure>
-    
-          <figure>
-            <img src="assets/graphs/waterpark/ticket_sales_vs_temp.png"
-                 alt="Ticket sales vs temperature">
-            <figcaption>
-              Ticket sales increase with temperature, with diminishing returns.
-            </figcaption>
-          </figure>
-    
-          <figure>
-            <img src="assets/graphs/waterpark/predicted_ticket_sales_RMSE.png"
-                 alt="RMSE comparison across models">
-            <figcaption>
-              Linear regression outperformed a neural network baseline on test RMSE.
-            </figcaption>
-          </figure>
-        </section>
-      
-    
-        <aside class="project-info">
-          <h3>Project Details</h3>
-      
-          <p>
-            This project focuses on forecasting daily ticket sales for a regional
-            waterpark using weather, seasonal, and calendar features.
-          </p>
-      
-          <ul>
-            <li><strong>Models:</strong> Linear Regression, Neural Network</li>
-            <li><strong>Metrics:</strong> RMSE, R²</li>
-            <li><strong>Key Insight:</strong> Feature engineering mattered more than model complexity</li>
-            <li><strong>Data:</strong> Daily ticket sales + weather</li>
-          </ul>
-        </aside>
-      
-      </div>
-    </section>
-    
-
-    <!-- PAGE 3: MORE PROJECTS -->
     <section class="page" id="projects">
       <div class="content">
-        <h2>More Analysis</h2>
-
-        <article>
-          <h3>Statistical Modeling & CLT Simulations</h3>
-          <p>
-            Explored convergence, consistency, and asymptotic behavior
-            of estimators through simulation and theory.
-          </p>
-        </article>
-
-        <article>
-          <h3>Predictive Modeling with PyTorch</h3>
-          <p>
-            Implemented regression models using PyTorch to compare
-            classical and neural approaches on tabular data.
-          </p>
-        </article>
+        <h2>Featured Projects</h2>
+    
+        <!-- Steam Overview -->
+        <div class = "project-card steam">
+          <a class="footer-link icon-link project-github"
+            href="https://github.com/PinkyHuddy/steam_project"
+            target="_blank"
+            aria-label="GitHub repository">
+            <i class="fa-brands fa-github"></i>
+          </a>
+          <div class="project-side-by-side">
+            <section class="project-graphs">
+              <figure class="placeholder">
+                <div class="placeholder-box">Live data pipeline (preview soon)</div>
+                <figcaption>
+                  Steam CCU ingestion running every 30 minutes.
+                </figcaption>
+              </figure>
+            </section>
+      
+            <aside class="project-info">
+              <h3>
+                Real-Time Steam Player Trends
+                <span class="badge">In Progress</span>
+              </h3>
+              <p class="meta">Live Data · APIs · Time Series</p>
+              <p class = "meta"> Last Updated: Feb 12, 2026</p>
+              <p>
+                Building a real-time pipeline to ingest Steam CCU data every 30 minutes
+                to analyze player behavior across genres and global events.
+              </p>
+              <ul>
+                <li><strong>Stack:</strong> Python, Steam API, SQLite</li>
+                <li><strong>Status:</strong> Actively collecting data</li>
+              </ul>
+          </div>
+        </div>
+    
+        <!-- Waterpark Overview -->
+        <div class ="project-card waterpark">
+          <a class="footer-link icon-link project-github"
+            href="https://github.com/PinkyHuddy/water-park-sales-analysis"
+            target="_blank"
+            aria-label="GitHub repository">
+            <i class="fa-brands fa-github"></i>
+          </a>
+          <div class="project-side-by-side">
+            <section class="project-graphs">
+              <figure>
+                <img src="assets/graphs/waterpark/ticket_sales_vs_year.png"
+                    alt="Ticket sales per year showing COVID impact">
+                <figcaption>
+                  COVID-19 introduced a structural break in ticket demand, motivating
+                  year-level controls.
+                </figcaption>
+              </figure>
+        
+              <figure>
+                <img src="assets/graphs/waterpark/ticket_sales_year.png"
+                    alt="Ticket sales by month">
+                <figcaption>
+                  Strong seasonal patterns justified month-based feature encoding.
+                </figcaption>
+              </figure>
+        
+              <figure>
+                <img src="assets/graphs/waterpark/ticket_sales_vs_temp.png"
+                    alt="Ticket sales vs temperature">
+                <figcaption>
+                  Ticket sales increase with temperature, with diminishing returns.
+                </figcaption>
+              </figure>
+        
+              <figure>
+                <img src="assets/graphs/waterpark/predicted_ticket_sales_RMSE.png"
+                    alt="RMSE comparison across models">
+                <figcaption>
+                  Linear regression outperformed a neural network baseline on test RMSE.
+                </figcaption>
+              </figure>
+            </section>
+      
+            <aside class="project-info">
+              <h3>Operations Analytics: Forecasting Attendance at a Regional Waterpark</h3>
+              <p class="meta">Regression · Forecasting · Time Series</p>
+              <p>
+                Built and evaluated demand forecasting models using weather, seasonality,
+                and calendar features to predict daily ticket sales.
+              </p>
+              <ul>
+                <li><strong>Models:</strong> Linear Regression, Neural Network</li>
+                <li><strong>Metrics:</strong> RMSE, R²</li>
+                <li><strong>Key Insight:</strong> Feature engineering beat model complexity</li>
+              </ul>
+            </aside>
+          </div>
+        </div>
       </div>
     </section>
+
 
     <!-- PAGE 4: COURSEWORK -->
     <section class="page" id="coursework">
@@ -191,18 +213,18 @@
         <p><strong>Data:</strong> pandas, NumPy, scikit-learn, PyTorch</p>
         <p><strong>Tools:</strong> Git, GitHub, VS Code, Jupyter</p>
       </div>
-    </section>
-
-    <!-- PAGE 5: CONTACT -->
-    <section class="page" id="contact">
-      <div class="content">
-        <h2>Contact</h2>
-
-        <p>
-          <a href="assets/resume.pdf" target="_blank">Resume (PDF)</a><br>
-          <a href="https://github.com/yourusername" target="_blank">GitHub</a><br>
-          <a href="mailto:youremail@email.com">Email</a>
-        </p>
+      <div class="page-bar">
+        <a class="footer-link icon-link" href="assets/resume/resume_for_website.pdf" target="_blank">
+          <i class="fa-solid fa-file-lines"></i>
+        </a>
+      
+        <a class="footer-link icon-link" href="https://github.com/PinkyHuddy" target="_blank">
+          <i class="fa-brands fa-github"></i>
+        </a>
+      
+        <a class="footer-link icon-link" href="mailto:husmith@berkeley.edu">
+          <i class="fa-solid fa-envelope"></i>
+        </a>
       </div>
     </section>
 
