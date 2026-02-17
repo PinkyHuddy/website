@@ -402,9 +402,10 @@
 .page-bar {
   position: absolute;
   bottom: 0;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
   left: 0;
   width: 100%;
-  height: 5.5rem;        /* bar height */
+  height: 10.5rem;        /* bar height */
   background: rgba(0, 0, 0, 0.85);
   backdrop-filter: blur(6px);   /* optional glass effect */
   display: flex;
@@ -423,9 +424,7 @@
 }
 
 .page-bar p {
-  margin: 0;
   text-align: center;
-  font-size: 0.9rem;
 }
 
 .page-bar a {
@@ -447,7 +446,32 @@
   transition: opacity 0.2s ease, transform 0.2s ease;
 }
 
+.footer-icons {
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;           /* 👈 controls spacing between icons */
+  margin-bottom: 1.5rem;
+}
+
+.footer-copy {
+  margin-top: 1.25rem;
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.7);
+  text-align: center;
+  font-size: 0.8rem;
+
+}
+
+.footer-copy-description {
+  display: block;
+  margin-top: 0.5rem;   /* 👈 small space between the two lines */
+  font-size: 0.8rem;
+  color: rgba(255, 255, 255, 0.5);
+  text-align: center;
+}
+
 .footer-link:hover {
+  display: block;
   opacity: 1;
   transform: translateY(-1px);
 }
@@ -516,3 +540,130 @@
   opacity: 1;
   transform: translateY(-1px);
 }
+
+/* ===== Coursework Section ===== */
+
+#coursework .coursework-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 3rem;
+  margin-top: 2.5rem;
+}
+
+#coursework .coursework-col h3 {
+  font-size: 1.1rem;
+  margin-bottom: 0.75rem;
+  padding-bottom: 0.25rem;
+  border-bottom: 2px solid #d6c7aa;
+}
+
+.coursework-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.coursework-pills span {
+  border: 1px solid #d6c7aa;
+  border-radius: 999px;
+  padding: 0.35rem 0.7rem;
+  font-size: 0.85rem;
+  background: #fffaf0;
+  transition: transform 0.12s ease, box-shadow 0.12s ease;
+}
+
+.coursework-pills span:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+}
+
+.coursework-note {
+  margin-top: 0.6rem;
+  font-size: 0.85rem;
+  color: #6b7280;
+  line-height: 1.4;
+}
+
+.coursework-callout {
+  margin-top: 4rem;
+  padding: 1.5rem 2rem;
+  border-left: 4px solid #d6c7aa;
+  background: #fffaf0;
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
+@media (max-width: 800px) {
+  #coursework .coursework-grid {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+}
+
+#coursework .coursework-grid + .coursework-grid {
+  margin-top: 4rem;   /* was 3rem inline */
+}
+
+#coursework h2 {
+  text-align: center;
+}
+
+#projects h2 {
+  text-align: center;
+}
+
+.sidequest-title {
+  text-align: center;
+  font-size: 2.25rem;
+  margin-bottom: 3rem;
+}
+
+#sidequests {
+  display: block;   /* override flex/grid from .page */
+}
+
+.sidequest-title {
+  text-align: center;
+  font-size: 2.25rem;
+  width: 100%;
+}
+
+/* Side Quest photo grid */
+.sidequest-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 2.5rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding:  1rem 6rem;  /* ⬅ increase bottom padding */
+}
+
+.sidequest-grid img {
+  width: 100%;
+  aspect-ratio: 3 / 4;
+  object-fit: cover;
+  border-radius: 16px;
+  display: block;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.12);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.sidequest-grid img:hover {
+  transform: translateY(-6px) rotate(-0.4deg);
+  box-shadow: 0 20px 45px rgba(0,0,0,0.18);
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+  .sidequest-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+  .sidequest-grid {
+    grid-template-columns: 1fr;
+    padding-bottom: 7rem;
+  }
+}
+
