@@ -70,6 +70,19 @@
     letter-spacing: -0.03em;   /* tighter = more editorial */
     line-height: 1.05;
   }
+
+  .masthead-home {
+    color: inherit;
+    margin-right: 0;
+    text-decoration: none;
+  }
+
+  .masthead-home:hover,
+  .masthead-home:focus-visible {
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 0.18em;
+  }
   
   /* Navigation bar */
   .main-nav {
@@ -666,4 +679,3 @@
     padding-bottom: 7rem;
   }
 }
-
