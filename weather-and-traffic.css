@@ -190,7 +190,7 @@ body {
 }
 
 #risk-meter-fill.low { width: 15%; }
-#risk-meter-fill.moderate { width: 40%; }
+#risk-meter-fill.medium { width: 40%; }
 #risk-meter-fill.high { width: 70%; }
 #risk-meter-fill.extreme { width: 95%; }
 
@@ -265,9 +265,11 @@ body {
   text-transform: uppercase;
 }
 
-.risk-badge.high { color: #9b2c24; background: #f9e8e4; }
-.risk-badge.moderate { color: #8a5b08; background: #fbf1d9; }
+.risk-badge.high,
+.risk-badge.extreme { color: #9b2c24; background: #f9e8e4; }
+.risk-badge.medium { color: #8a5b08; background: #fbf1d9; }
 .risk-badge.low { color: #25623d; background: #e6f2e9; }
+.risk-badge.unavailable { color: #4b5563; background: #f3f4f6; }
 
 .methodology {
   display: grid;

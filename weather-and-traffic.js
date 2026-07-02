@@ -11,6 +11,12 @@ dateElement.textContent = new Date().toLocaleDateString("en-US", {
 const DATA_BASE_URL = "https://d3iomsa5syi9uh.cloudfront.net";
 const LATEST_RISK_KEY = "i80/latest/current_risk.json";
 const ONE_HOUR = 60 * 60 * 1000;
+const RISK_LEVELS = Object.freeze({
+  low: { label: "Low", className: "low" },
+  medium: { label: "Medium", className: "medium" },
+  high: { label: "High", className: "high" },
+  extreme: { label: "Extreme", className: "extreme" }
+});
 
 const weatherCodes = {
   0: ["Clear sky", "☀"],
@@ -81,15 +87,17 @@ function createCell(text) {
 
 function renderRisk(data) {
   const rawRank = String(data.risk_rank || "Unavailable").toLowerCase();
-  const rank = rawRank.charAt(0).toUpperCase() + rawRank.slice(1);
-  const badgeClass = rawRank === "moderate" ? "moderate" : rawRank === "low" ? "low" : "high";
-  const meterClass = ["low", "moderate", "high", "extreme"].includes(rawRank) ? rawRank : "";
+  const riskLevel = RISK_LEVELS[rawRank];
+  const rank = riskLevel?.label || "Unavailable";
+  const rankClass = riskLevel?.className || "unavailable";
   const probability = Number(data.closure_probability);
   const probabilityText = Number.isFinite(probability) ? `${(probability * 100).toFixed(1)}%` : "Not provided";
 
   setText("overall-risk", rank);
-  document.getElementById("risk-meter-fill").className = meterClass;
-  setText("risk-summary", `The latest road-closure model classifies conditions at Donner Pass as ${rawRank} risk.`);
+  document.getElementById("risk-meter-fill").className = rankClass;
+  setText("risk-summary", riskLevel
+    ? `The latest road-closure model classifies conditions at Donner Pass as ${rank.toLowerCase()} risk.`
+    : "The latest road-closure model returned an unavailable risk level.");
   setText("last-updated", `Latest model: ${new Date(data.generated_at).toLocaleString()}`);
 
   const row = document.createElement("tr");
@@ -97,7 +105,7 @@ function renderRisk(data) {
 
   const riskCell = document.createElement("td");
   const badge = document.createElement("span");
-  badge.classList.add("risk-badge", badgeClass);
+  badge.classList.add("risk-badge", rankClass);
   badge.textContent = rank;
   riskCell.append(badge);
 
