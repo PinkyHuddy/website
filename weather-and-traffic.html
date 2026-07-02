@@ -1,0 +1,587 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Local weather conditions and predicted road-closure risk." />
+  <title>Weather and Traffic — The Hudson Smith Times</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:wght@500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
+
+  <style>
+    /* Page-specific styles. The shared masthead, palette, and type come from styles.css. */
+    html,
+    body {
+      height: auto;
+      scroll-snap-type: none;
+    }
+
+    .weather-page {
+      width: min(1180px, calc(100% - 3rem));
+      margin: 0 auto;
+      padding: 3.25rem 0 5rem;
+    }
+
+    .section-label,
+    .eyebrow,
+    .data-label {
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.13em;
+      text-transform: uppercase;
+    }
+
+    .section-label {
+      margin-bottom: 0.8rem;
+      color: #4b5563;
+    }
+
+    .dashboard-heading {
+      max-width: 760px;
+      padding-bottom: 2rem;
+      border-bottom: 1px solid #111827;
+    }
+
+    .dashboard-heading h2 {
+      max-width: 700px;
+      font-size: clamp(2.8rem, 6vw, 5.3rem);
+      line-height: 0.98;
+      letter-spacing: -0.04em;
+    }
+
+    .dashboard-deck {
+      max-width: 650px;
+      margin-top: 1.25rem;
+      color: #374151;
+      font-family: "Playfair Display", serif;
+      font-size: clamp(1.05rem, 2vw, 1.3rem);
+      line-height: 1.5;
+    }
+
+    .dateline {
+      margin-top: 1.2rem;
+      color: #6b7280;
+      font-size: 0.75rem;
+    }
+
+    .status-strip {
+      display: flex;
+      align-items: center;
+      gap: 0.55rem;
+      margin: 1rem 0 2.3rem;
+      font-size: 0.76rem;
+    }
+
+    .status-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: #26824a;
+      box-shadow: 0 0 0 4px rgba(38, 130, 74, 0.12);
+    }
+
+    .dashboard-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.65fr) minmax(280px, 0.8fr);
+      border-top: 3px double #111827;
+      border-bottom: 3px double #111827;
+    }
+
+    .lead-panel,
+    .risk-panel {
+      padding: 1.7rem 0;
+    }
+
+    .lead-panel {
+      padding-right: 2.2rem;
+      border-right: 1px solid #b9b2a3;
+    }
+
+    .risk-panel {
+      padding-left: 2.2rem;
+    }
+
+    .eyebrow {
+      color: #8d241f;
+    }
+
+    .lead-panel h3,
+    .risk-panel h3,
+    .data-section h3 {
+      margin-top: 0.35rem;
+      font-size: 1.55rem;
+      line-height: 1.15;
+    }
+
+    .current-weather {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 1.4rem;
+      align-items: center;
+      margin-top: 1.8rem;
+    }
+
+    .weather-symbol {
+      width: 92px;
+      height: 92px;
+      display: grid;
+      place-items: center;
+      border: 1px solid #b9b2a3;
+      border-radius: 50%;
+      font-family: "Playfair Display", serif;
+      font-size: 2rem;
+    }
+
+    .temperature {
+      font-family: "Playfair Display", serif;
+      font-size: clamp(3.2rem, 7vw, 5.5rem);
+      line-height: 0.85;
+    }
+
+    .condition {
+      margin-top: 0.65rem;
+      color: #4b5563;
+      font-size: 0.92rem;
+    }
+
+    .weather-metrics {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      margin-top: 2rem;
+      border-top: 1px solid #b9b2a3;
+    }
+
+    .metric {
+      min-width: 0;
+      padding: 1rem 0.8rem 0 0;
+    }
+
+    .metric + .metric {
+      padding-left: 0.8rem;
+      border-left: 1px solid #d1cabd;
+    }
+
+    .metric strong {
+      display: block;
+      margin-top: 0.35rem;
+      font-family: "Playfair Display", serif;
+      font-size: 1.25rem;
+    }
+
+    .data-label {
+      color: #6b7280;
+      font-size: 0.61rem;
+    }
+
+    .risk-score {
+      display: flex;
+      align-items: baseline;
+      margin-top: 1.6rem;
+    }
+
+    .risk-score strong {
+      color: #9b2c24;
+      font-family: "Playfair Display", serif;
+      font-size: 4.6rem;
+      line-height: 0.9;
+    }
+
+    .risk-meter {
+      height: 8px;
+      margin: 1.3rem 0 0.6rem;
+      overflow: hidden;
+      background: #ded8ca;
+    }
+
+    .risk-meter span {
+      display: block;
+      width: 62%;
+      height: 100%;
+      background: #9b2c24;
+    }
+
+    .risk-scale {
+      display: flex;
+      justify-content: space-between;
+      color: #6b7280;
+      font-size: 0.65rem;
+      text-transform: uppercase;
+    }
+
+    .risk-summary {
+      margin-top: 1.5rem;
+      color: #374151;
+      font-family: "Playfair Display", serif;
+      line-height: 1.55;
+    }
+
+    .data-section {
+      margin-top: 3rem;
+    }
+
+    .section-heading-row {
+      display: flex;
+      justify-content: space-between;
+      gap: 1rem;
+      align-items: end;
+      padding-bottom: 0.8rem;
+      border-bottom: 2px solid #111827;
+    }
+
+    .section-note {
+      color: #6b7280;
+      font-size: 0.72rem;
+      text-align: right;
+    }
+
+    .road-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.86rem;
+    }
+
+    .road-table th,
+    .road-table td {
+      padding: 0.9rem 0.65rem;
+      border-bottom: 1px solid #cec7b9;
+      text-align: left;
+    }
+
+    .road-table th {
+      color: #6b7280;
+      font-size: 0.63rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+    .road-table th:last-child,
+    .road-table td:last-child {
+      text-align: right;
+    }
+
+    .risk-badge {
+      display: inline-block;
+      min-width: 74px;
+      padding: 0.3rem 0.55rem;
+      border: 1px solid currentColor;
+      border-radius: 999px;
+      font-size: 0.65rem;
+      font-weight: 600;
+      text-align: center;
+      text-transform: uppercase;
+    }
+
+    .risk-badge.high { color: #9b2c24; background: #f9e8e4; }
+    .risk-badge.moderate { color: #8a5b08; background: #fbf1d9; }
+    .risk-badge.low { color: #25623d; background: #e6f2e9; }
+
+    .methodology {
+      display: grid;
+      grid-template-columns: 1fr 2fr;
+      gap: 2rem;
+      margin-top: 3.5rem;
+      padding-top: 1.25rem;
+      border-top: 1px solid #111827;
+    }
+
+    .methodology h3 {
+      font-size: 1.25rem;
+    }
+
+    .methodology p {
+      max-width: 70ch;
+      color: #4b5563;
+      font-family: "Playfair Display", serif;
+      font-size: 0.95rem;
+      line-height: 1.6;
+    }
+
+    .placeholder-note {
+      margin-top: 1.3rem;
+      padding: 0.8rem 1rem;
+      border-left: 3px solid #6b7280;
+      background: rgba(255, 255, 255, 0.35);
+      color: #4b5563;
+      font-size: 0.72rem;
+      line-height: 1.5;
+    }
+
+    @media (max-width: 780px) {
+      :root { --page-margin: 1.25rem; }
+      .utility-right { display: none; }
+      .site-title { font-size: clamp(2rem, 9vw, 3rem); text-align: center; }
+      .weather-page { width: min(100% - 2rem, 1180px); padding-top: 2rem; }
+      .dashboard-grid { grid-template-columns: 1fr; }
+      .lead-panel { padding-right: 0; border-right: 0; border-bottom: 1px solid #b9b2a3; }
+      .risk-panel { padding-left: 0; }
+      .weather-metrics { grid-template-columns: repeat(2, 1fr); }
+      .metric:nth-child(3) { padding-left: 0; border-left: 0; }
+      .metric:nth-child(n + 3) { margin-top: 1rem; padding-top: 1rem; border-top: 1px solid #d1cabd; }
+      .section-heading-row { display: block; }
+      .section-note { margin-top: 0.4rem; text-align: left; }
+      .table-wrap { overflow-x: auto; }
+      .road-table { min-width: 650px; }
+      .methodology { grid-template-columns: 1fr; gap: 0.7rem; }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="utility-bar">
+      <div class="utility-inner">
+        <span id="current-date">Thursday, July 2, 2026</span>
+        <span class="utility-right">Applied Mathematics &amp; Data Science</span>
+      </div>
+    </div>
+
+    <div class="masthead">
+      <h1 class="site-title">The Hudson Smith Times</h1>
+    </div>
+
+    <nav class="main-nav" aria-label="Weather and traffic sections">
+      <a href="index.html">Home</a>
+      <a href="#conditions">Conditions</a>
+      <a href="#road-risk">Road Risk</a>
+      <a href="#methodology">Methodology</a>
+    </nav>
+  </header>
+
+  <main class="weather-page">
+    <header class="dashboard-heading">
+      <p class="section-label">Live Desk</p>
+      <h2>Weather and Traffic</h2>
+      <p class="dashboard-deck">
+        Current conditions, forecast variables and modeled road-closure risk in one operational view.
+      </p>
+      <p class="dateline">Weather and model data updated independently as new observations arrive.</p>
+    </header>
+
+    <div class="status-strip" aria-label="Data pipeline status">
+      <span class="status-dot" aria-hidden="true"></span>
+      <strong>Pipeline operational</strong>
+      <span>·</span>
+      <span id="last-updated">Latest data: awaiting S3 connection</span>
+    </div>
+
+    <section class="dashboard-grid" id="conditions" aria-label="Current weather and closure risk">
+      <article class="lead-panel">
+        <p class="eyebrow">Current Conditions</p>
+        <h3 id="weather-location">Forecast area</h3>
+
+        <div class="current-weather">
+          <div class="weather-symbol" id="weather-symbol" aria-hidden="true">—</div>
+          <div>
+            <p class="temperature" id="temperature">--°</p>
+            <p class="condition" id="condition">Weather observation pending</p>
+          </div>
+        </div>
+
+        <div class="weather-metrics">
+          <div class="metric">
+            <span class="data-label">Precipitation (last 24 hours)</span>
+            <strong id="precipitation">-- in</strong>
+          </div>
+          <div class="metric">
+            <span class="data-label">Wind</span>
+            <strong id="wind">-- mph</strong>
+          </div>
+          <div class="metric">
+            <span class="data-label">Cloud cover</span>
+            <strong id="cloud-cover">--%</strong>
+          </div>
+          <div class="metric">
+            <span class="data-label">Humidity</span>
+            <strong id="humidity">--%</strong>
+          </div>
+        </div>
+      </article>
+
+      <aside class="risk-panel">
+        <p class="eyebrow">Network Outlook</p>
+        <h3>Overall closure risk</h3>
+        <div class="risk-score">
+          <strong id="overall-risk">Pending</strong>
+        </div>
+        <div class="risk-meter" aria-label="Overall road closure risk">
+          <span id="risk-meter-fill" style="width: 0%"></span>
+        </div>
+        <div class="risk-scale"><span>Low</span><span>Medium</span><span>High</span><span>Extreme</span></div>
+        <p class="risk-summary" id="risk-summary">
+          The latest model output will summarize the primary road hazards here.
+        </p>
+        <p class="placeholder-note">
+          Risk reflects the latest available model output and is not an official closure notice.
+        </p>
+      </aside>
+    </section>
+
+    <section class="data-section" id="road-risk">
+      <div class="section-heading-row">
+        <div>
+          <p class="section-label">Model Output</p>
+          <h3>Roads to watch</h3>
+        </div>
+        <p class="section-note">Ranked by predicted probability of closure</p>
+      </div>
+
+      <div class="table-wrap">
+        <table class="road-table">
+          <thead>
+            <tr>
+              <th scope="col">Road</th>
+              <th scope="col">Area</th>
+              <th scope="col">Primary factor</th>
+              <th scope="col">Risk level</th>
+              <th scope="col">Probability</th>
+            </tr>
+          </thead>
+          <tbody id="road-risk-body">
+            <tr>
+              <td>Awaiting model data</td>
+              <td>—</td>
+              <td>—</td>
+              <td><span class="risk-badge low">Pending</span></td>
+              <td>—</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="methodology" id="methodology">
+      <div>
+        <p class="section-label">About the forecast</p>
+        <h3>How to read this page</h3>
+      </div>
+      <p>
+        Closure probabilities are model estimates built from the latest transformed weather and road data. They are decision-support signals, not official closure notices. Weather observations and predictions may update on different schedules; each production value should retain its source timestamp.
+      </p>
+    </section>
+  </main>
+
+  <script>
+    const dateElement = document.getElementById("current-date");
+    dateElement.textContent = new Date().toLocaleDateString("en-US", {
+      weekday: "long",
+      month: "long",
+      day: "numeric",
+      year: "numeric"
+    });
+
+    // Replace this with your CloudFront distribution domain after it is created.
+    // Keep the bucket private; never put AWS credentials in browser JavaScript.
+    const DATA_BASE_URL = "https://d3iomsa5syi9uh.cloudfront.net";
+    const LATEST_RISK_KEY = "i80/latest/current_risk.json";
+    const ONE_HOUR = 60 * 60 * 1000;
+
+    const weatherCodes = {
+      0: ["Clear sky", "☀"],
+      1: ["Mainly clear", "🌤"],
+      2: ["Partly cloudy", "⛅"],
+      3: ["Overcast", "☁"],
+      45: ["Fog", "☁"],
+      48: ["Rime fog", "☁"],
+      51: ["Light drizzle", "🌧"],
+      53: ["Drizzle", "🌧"],
+      55: ["Heavy drizzle", "🌧"],
+      61: ["Light rain", "🌧"],
+      63: ["Rain", "🌧"],
+      65: ["Heavy rain", "🌧"],
+      71: ["Light snow", "🌨"],
+      73: ["Snow", "🌨"],
+      75: ["Heavy snow", "🌨"],
+      77: ["Snow grains", "🌨"],
+      80: ["Light showers", "🌦"],
+      81: ["Showers", "🌦"],
+      82: ["Heavy showers", "🌧"],
+      85: ["Snow showers", "🌨"],
+      86: ["Heavy snow showers", "🌨"],
+      95: ["Thunderstorm", "⛈"],
+      96: ["Thunderstorm with hail", "⛈"],
+      99: ["Severe thunderstorm with hail", "⛈"]
+    };
+
+    function objectUrl(key) {
+      return `${DATA_BASE_URL}/${key.split("/").map(encodeURIComponent).join("/")}`;
+    }
+
+    async function getJson(key) {
+      // Use a simple GET. Custom cache/request options can trigger an OPTIONS
+      // preflight, which this CloudFront behavior does not currently handle.
+      const response = await fetch(objectUrl(key));
+      if (!response.ok) throw new Error(`Data request failed (${response.status})`);
+      return response.json();
+    }
+
+    function setText(id, value) {
+      document.getElementById(id).textContent = value;
+    }
+
+    function renderWeather(data) {
+      const hourly = data.hourly;
+      const latest = hourly.time.length - 1;
+      if (latest < 0) throw new Error("Weather file contains no hourly observations");
+
+      const precipitation24h = hourly.precipitation
+        .slice(-24)
+        .reduce((total, value) => total + (Number(value) || 0), 0);
+      const [condition, symbol] = weatherCodes[hourly.weather_code[latest]] || ["Conditions available", "—"];
+
+      setText("weather-location", "Donner Pass, California");
+      setText("weather-symbol", symbol);
+      setText("temperature", `${Math.round(hourly.temperature_2m[latest])}°`);
+      setText("condition", condition);
+      setText("precipitation", `${precipitation24h.toFixed(2)} in`);
+      setText("wind", `${Math.round(hourly.wind_speed_10m[latest])} mph`);
+      setText("cloud-cover", `${Math.round(hourly.cloud_cover[latest])}%`);
+      setText("humidity", `${Math.round(hourly.relative_humidity_2m[latest])}%`);
+    }
+
+    function renderRisk(data) {
+      const rawRank = String(data.risk_rank || "Unavailable").toLowerCase();
+      const rank = rawRank.charAt(0).toUpperCase() + rawRank.slice(1);
+      const meterWidths = { Low: 15, Moderate: 40, High: 70, Extreme: 95 };
+      const badgeClass = rawRank === "moderate" ? "moderate" :
+        rawRank === "low" ? "low" : "high";
+      const probability = Number(data.closure_probability);
+      const probabilityText = Number.isFinite(probability)
+        ? `${(probability * 100).toFixed(1)}%`
+        : "Not provided";
+
+      setText("overall-risk", rank);
+      document.getElementById("risk-meter-fill").style.width = `${meterWidths[rank] || 0}%`;
+      setText("risk-summary", `The latest road-closure model classifies conditions at Donner Pass as ${rank.toLowerCase()} risk.`);
+      setText("last-updated", `Latest model: ${new Date(data.generated_at).toLocaleString()}`);
+
+      document.getElementById("road-risk-body").innerHTML = `
+        <tr>
+          <td>I-80</td>
+          <td>Donner Pass</td>
+          <td>Latest weather model</td>
+          <td><span class="risk-badge ${badgeClass}">${rank}</span></td>
+          <td>${probabilityText}</td>
+        </tr>`;
+    }
+
+    async function refreshDashboard() {
+      const status = document.getElementById("last-updated");
+
+      try {
+        const risk = await getJson(LATEST_RISK_KEY);
+        const weather = await getJson(risk.weather_s3_key);
+        renderWeather(weather);
+        renderRisk(risk);
+      } catch (error) {
+        console.error("Unable to refresh dashboard:", error);
+        status.textContent = "Latest data unavailable — retrying in one hour";
+      }
+    }
+
+    refreshDashboard();
+    setInterval(refreshDashboard, ONE_HOUR);
+  </script>
+</body>
+</html>

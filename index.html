@@ -36,6 +36,7 @@
           <a href="#projects">Projects</a>
           <a href="#coursework">Coursework</a>
           <a href="#sidequests">Side Quests</a>
+          <a href="weather-and-traffic.html">Weather and Traffic</a>
         </nav>
 
         <!-- LIVE BAR-->
@@ -348,7 +349,8 @@
   </main>
 
   <script>
-    document.getElementById("year").textContent = new Date().getFullYear();
+    const yearElement = document.getElementById("year");
+    if (yearElement) yearElement.textContent = new Date().getFullYear();
   </script>
   
   <script>
@@ -421,6 +423,7 @@
     document.querySelectorAll(".main-nav a").forEach(link => {
       link.addEventListener("click", e => {
         const targetId = link.getAttribute("href");
+        if (!targetId.startsWith("#")) return;
         const target = document.querySelector(targetId);
         if (!target) return;
   
