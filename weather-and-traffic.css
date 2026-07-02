@@ -1,0 +1,319 @@
+/* Page-specific styles. The shared masthead, palette, and type come from styles.css. */
+html,
+body {
+  height: auto;
+  scroll-snap-type: none;
+}
+
+.weather-page {
+  width: min(1180px, calc(100% - 3rem));
+  margin: 0 auto;
+  padding: 3.25rem 0 5rem;
+}
+
+.section-label,
+.eyebrow,
+.data-label {
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+}
+
+.section-label {
+  margin-bottom: 0.8rem;
+  color: #4b5563;
+}
+
+.dashboard-heading {
+  max-width: 760px;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid #111827;
+}
+
+.dashboard-heading h2 {
+  max-width: 700px;
+  font-size: clamp(2.8rem, 6vw, 5.3rem);
+  line-height: 0.98;
+  letter-spacing: -0.04em;
+}
+
+.dashboard-deck {
+  max-width: 650px;
+  margin-top: 1.25rem;
+  color: #374151;
+  font-family: "Playfair Display", serif;
+  font-size: clamp(1.05rem, 2vw, 1.3rem);
+  line-height: 1.5;
+}
+
+.dateline {
+  margin-top: 1.2rem;
+  color: #6b7280;
+  font-size: 0.75rem;
+}
+
+.status-strip {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  margin: 1rem 0 2.3rem;
+  font-size: 0.76rem;
+}
+
+.status-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #26824a;
+  box-shadow: 0 0 0 4px rgba(38, 130, 74, 0.12);
+}
+
+.dashboard-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.65fr) minmax(280px, 0.8fr);
+  border-top: 3px double #111827;
+  border-bottom: 3px double #111827;
+}
+
+.lead-panel,
+.risk-panel {
+  padding: 1.7rem 0;
+}
+
+.lead-panel {
+  padding-right: 2.2rem;
+  border-right: 1px solid #b9b2a3;
+}
+
+.risk-panel {
+  padding-left: 2.2rem;
+}
+
+.eyebrow {
+  color: #8d241f;
+}
+
+.lead-panel h3,
+.risk-panel h3,
+.data-section h3 {
+  margin-top: 0.35rem;
+  font-size: 1.55rem;
+  line-height: 1.15;
+}
+
+.current-weather {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 1.4rem;
+  align-items: center;
+  margin-top: 1.8rem;
+}
+
+.weather-symbol {
+  width: 92px;
+  height: 92px;
+  display: grid;
+  place-items: center;
+  border: 1px solid #b9b2a3;
+  border-radius: 50%;
+  font-family: "Playfair Display", serif;
+  font-size: 2rem;
+}
+
+.temperature {
+  font-family: "Playfair Display", serif;
+  font-size: clamp(3.2rem, 7vw, 5.5rem);
+  line-height: 0.85;
+}
+
+.condition {
+  margin-top: 0.65rem;
+  color: #4b5563;
+  font-size: 0.92rem;
+}
+
+.weather-metrics {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  margin-top: 2rem;
+  border-top: 1px solid #b9b2a3;
+}
+
+.metric {
+  min-width: 0;
+  padding: 1rem 0.8rem 0 0;
+}
+
+.metric + .metric {
+  padding-left: 0.8rem;
+  border-left: 1px solid #d1cabd;
+}
+
+.metric strong {
+  display: block;
+  margin-top: 0.35rem;
+  font-family: "Playfair Display", serif;
+  font-size: 1.25rem;
+}
+
+.data-label {
+  color: #6b7280;
+  font-size: 0.61rem;
+}
+
+.risk-score {
+  display: flex;
+  align-items: baseline;
+  margin-top: 1.6rem;
+}
+
+.risk-score strong {
+  color: #9b2c24;
+  font-family: "Playfair Display", serif;
+  font-size: 4.6rem;
+  line-height: 0.9;
+}
+
+.risk-meter {
+  height: 8px;
+  margin: 1.3rem 0 0.6rem;
+  overflow: hidden;
+  background: #ded8ca;
+}
+
+.risk-meter span {
+  display: block;
+  width: 0;
+  height: 100%;
+  background: #9b2c24;
+}
+
+#risk-meter-fill.low { width: 15%; }
+#risk-meter-fill.moderate { width: 40%; }
+#risk-meter-fill.high { width: 70%; }
+#risk-meter-fill.extreme { width: 95%; }
+
+.risk-scale {
+  display: flex;
+  justify-content: space-between;
+  color: #6b7280;
+  font-size: 0.65rem;
+  text-transform: uppercase;
+}
+
+.risk-summary {
+  margin-top: 1.5rem;
+  color: #374151;
+  font-family: "Playfair Display", serif;
+  line-height: 1.55;
+}
+
+.data-section {
+  margin-top: 3rem;
+}
+
+.section-heading-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  align-items: end;
+  padding-bottom: 0.8rem;
+  border-bottom: 2px solid #111827;
+}
+
+.section-note {
+  color: #6b7280;
+  font-size: 0.72rem;
+  text-align: right;
+}
+
+.road-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.86rem;
+}
+
+.road-table th,
+.road-table td {
+  padding: 0.9rem 0.65rem;
+  border-bottom: 1px solid #cec7b9;
+  text-align: left;
+}
+
+.road-table th {
+  color: #6b7280;
+  font-size: 0.63rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.road-table th:last-child,
+.road-table td:last-child {
+  text-align: right;
+}
+
+.risk-badge {
+  display: inline-block;
+  min-width: 74px;
+  padding: 0.3rem 0.55rem;
+  border: 1px solid currentColor;
+  border-radius: 999px;
+  font-size: 0.65rem;
+  font-weight: 600;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.risk-badge.high { color: #9b2c24; background: #f9e8e4; }
+.risk-badge.moderate { color: #8a5b08; background: #fbf1d9; }
+.risk-badge.low { color: #25623d; background: #e6f2e9; }
+
+.methodology {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 2rem;
+  margin-top: 3.5rem;
+  padding-top: 1.25rem;
+  border-top: 1px solid #111827;
+}
+
+.methodology h3 {
+  font-size: 1.25rem;
+}
+
+.methodology p {
+  max-width: 70ch;
+  color: #4b5563;
+  font-family: "Playfair Display", serif;
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
+.placeholder-note {
+  margin-top: 1.3rem;
+  padding: 0.8rem 1rem;
+  border-left: 3px solid #6b7280;
+  background: rgba(255, 255, 255, 0.35);
+  color: #4b5563;
+  font-size: 0.72rem;
+  line-height: 1.5;
+}
+
+@media (max-width: 780px) {
+  :root { --page-margin: 1.25rem; }
+  .utility-right { display: none; }
+  .site-title { font-size: clamp(2rem, 9vw, 3rem); text-align: center; }
+  .weather-page { width: min(100% - 2rem, 1180px); padding-top: 2rem; }
+  .dashboard-grid { grid-template-columns: 1fr; }
+  .lead-panel { padding-right: 0; border-right: 0; border-bottom: 1px solid #b9b2a3; }
+  .risk-panel { padding-left: 0; }
+  .weather-metrics { grid-template-columns: repeat(2, 1fr); }
+  .metric:nth-child(3) { padding-left: 0; border-left: 0; }
+  .metric:nth-child(n + 3) { margin-top: 1rem; padding-top: 1rem; border-top: 1px solid #d1cabd; }
+  .section-heading-row { display: block; }
+  .section-note { margin-top: 0.4rem; text-align: left; }
+  .table-wrap { overflow-x: auto; }
+  .road-table { min-width: 650px; }
+  .methodology { grid-template-columns: 1fr; gap: 0.7rem; }
+}
