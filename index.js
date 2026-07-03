@@ -15,9 +15,9 @@ if (dateElement) {
 
 const liveMessages = [
   "Rock Climbing at GSF",
-  "Studying probability and complex analysis",
-  "Building data projects in Python",
-  "Applying for data analytics internships",
+  "Building data pipelines in Python and SQL",
+  "Developing the I-80 closure risk dashboard",
+  "Exploring data engineering and software roles",
   "Pumping Iron at RSF"
 ];
 

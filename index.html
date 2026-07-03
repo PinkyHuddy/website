@@ -5,16 +5,16 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' https://fonts.googleapis.com https://cdnjs.cloudflare.com; font-src 'self' https://fonts.gstatic.com https://cdnjs.cloudflare.com; img-src 'self' data:; connect-src 'self' https://fonts.googleapis.com https://fonts.gstatic.com https://cdnjs.cloudflare.com; object-src 'none'; base-uri 'self'; form-action 'self'; frame-src 'none'; upgrade-insecure-requests">
   <meta name="referrer" content="strict-origin-when-cross-origin">
-  <meta name="description" content="Hudson Smith's applied mathematics and data science portfolio, featuring engineering, analytics, and machine-learning projects." />
+  <meta name="description" content="Portfolio of UC Berkeley Applied Mathematics graduate Hudson Smith, featuring data engineering, software engineering, analytics, and machine-learning projects." />
   <meta name="theme-color" content="#fcf8ed" />
   <meta property="og:type" content="website" />
-  <meta property="og:title" content="Hudson Smith — Data &amp; Statistics" />
-  <meta property="og:description" content="Applied mathematics, data science, and software engineering projects by Hudson Smith." />
+  <meta property="og:title" content="Hudson Smith — Data &amp; Software" />
+  <meta property="og:description" content="Data engineering, software engineering, analytics, and machine-learning projects by UC Berkeley Applied Mathematics graduate Hudson Smith." />
   <meta property="og:url" content="https://hudsonsmith.dev/" />
   <meta property="og:image" content="https://hudsonsmith.dev/assets/images/me.jpeg" />
   <meta name="twitter:card" content="summary_large_image" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-  <title>Hudson Smith — Data &amp; Statistics</title>
+  <title>Hudson Smith — Data &amp; Software</title>
   <link rel="canonical" href="https://hudsonsmith.dev/" />
   <link rel="icon" href="favicon.svg" type="image/svg+xml" />
 
@@ -34,10 +34,10 @@
         <div class="utility-bar">
             <div class="utility-inner">
               <span id="current-date"></span>
-              <span class="utility-right">Applied Mathematics &amp; Data Science</span>
+              <span class="utility-right">UC Berkeley Applied Mathematics Graduate</span>
             </div>
           </div>
-    
+
       
         <!-- MASTHEAD -->
         <div class="masthead">
@@ -66,7 +66,7 @@
                 </span>
             </div>
             <div class="live-icons">
-              <a class="footer-link icon-link" href="assets/resume/hudson_smith_05:04:2026.pdf" target="_blank" rel="noopener noreferrer" aria-label="Resume">
+              <a class="footer-link icon-link" href="assets/resume/Hudson_Smith_Resume_07_02_26.pdf" target="_blank" rel="noopener noreferrer" aria-label="Resume">
                 <i class="fa-solid fa-file-lines"></i>
               </a>
             
@@ -96,24 +96,25 @@
     
         <div class="content bio-content">
           <h2 class="bio-title">Hudson Smith</h2>
+          <p class="meta">UC Berkeley Applied Mathematics Graduate</p>
     
           <p class="lede">
-            I’m an applied mathematics student interested in data engineering,
-            software engineering, and building full-stack tools around real-world data.
+            Hi, I’m Hudson, a recent UC Berkeley Applied Mathematics graduate looking
+            for entry-level roles in data analytics, data engineering, or software engineering.
           </p>
     
           <p>
-            My work focuses on turning messy, operational datasets into usable
-            systems: cleaning and structuring raw data, designing data pipelines,
-            building predictive models, and creating interfaces that make results
-            easier to explore and act on.
+            In my projects, I’ve worked with real-world datasets from initial cleaning
+            and exploration through modeling and presentation. That has included writing
+            Python and SQL, working with APIs, comparing machine-learning models, and
+            creating web interfaces for the results.
           </p>
     
           <p>
-            I have hands-on experience with Python, pandas, NumPy, scikit-learn,
-            SQL, APIs, and web development, with coursework in probability theory,
-            linear algebra, real analysis, and statistics supporting the technical
-            side of my projects.
+            Most recently, I developed an I-80 closure-risk project using historical
+            weather and manually reviewed closure records, then deployed its data
+            pipeline with AWS Lambda and S3. I’ve also analyzed waterpark sales data
+            to study demand patterns and compare predictive approaches.
           </p>
         </div>
       </div>
@@ -124,40 +125,92 @@
       <div class="content">
         <h2>Featured Projects</h2>
     
-        <!-- Road Prediction Overview -->
+        <!-- I-80 Donner Pass Closure Risk Dashboard Overview -->
         <div class="project-card road">
           <a class="footer-link icon-link project-github"
-            href="https://github.com/PinkyHuddy/road_prediction_project"
+            href="https://github.com/PinkyHuddy/road_project"
             target="_blank" rel="noopener noreferrer"
-            aria-label="GitHub repository">
+            aria-label="I-80 Donner Pass Closure Risk Dashboard GitHub repository">
             <i class="fa-brands fa-github"></i>
           </a>
 
           <div class="project-side-by-side">
             <section class="project-graphs">
-              <figure class="placeholder">
-                <div class="placeholder-box">Road condition prediction dashboard</div>
+              <figure>
+                <img src="assets/graphs/road/01_target_balance.png"
+                    alt="Closure forecast target rates for 6, 12, and 24-hour horizons">
                 <figcaption>
-                  Predicting road maintenance needs from project and location data.
+                  The 24-hour target captures more closure events while preserving a challenging class imbalance.
+                </figcaption>
+              </figure>
+
+              <figure>
+                <img src="assets/graphs/road/02_weather_target_correlations.png"
+                    alt="Weather variables correlated with future I-80 closures">
+                <figcaption>
+                  Snowfall, precipitation, weather severity, and pressure show the strongest relationships with future closures.
+                </figcaption>
+              </figure>
+
+              <figure>
+                <img src="assets/graphs/road/03_closure_start_effect_sizes.png"
+                    alt="Standardized weather differences during I-80 closure-start hours">
+                <figcaption>
+                  Closure starts occur under distinctly harsher weather, especially severe conditions, cloud cover, and snowfall.
+                </figcaption>
+              </figure>
+
+              <figure>
+                <img src="assets/graphs/road/04_weather_distributions.png"
+                    alt="Weather distributions at closure starts compared with other winter hours">
+                <figcaption>
+                  Closure-start hours combine more snow and precipitation, stronger winds, colder temperatures, and lower pressure.
+                </figcaption>
+              </figure>
+
+              <figure>
+                <img src="assets/graphs/road/05_closure_timing.png"
+                    alt="I-80 closure starts by local month and hour">
+                <figcaption>
+                  Normalized closure starts peak during the core winter months and vary meaningfully by hour of day.
+                </figcaption>
+              </figure>
+
+              <figure>
+                <img src="assets/graphs/road/06_preclosure_weather_trajectory.png"
+                    alt="Average weather during the 48 hours before I-80 closures">
+                <figcaption>
+                  Snowfall and precipitation build as closures approach while temperature falls, providing useful forecast signals.
+                </figcaption>
+              </figure>
+
+              <figure>
+                <img src="assets/graphs/road/07_predictor_correlation_heatmap.png"
+                    alt="Correlation heatmap for the strongest road-closure weather predictors">
+                <figcaption>
+                  Predictor correlations informed feature selection and helped identify overlapping weather signals.
                 </figcaption>
               </figure>
             </section>
 
             <aside class="project-info">
               <h3>
-                Road Maintenance Prediction Project
-                <span class="badge">In Progress</span>
+                I-80 Donner Pass Closure Risk Dashboard
+                <span class="badge">Live Dashboard</span>
               </h3>
-              <p class="meta">Data Cleaning · Machine Learning · Prediction</p>
-              <p class="meta">Last Updated: Feb 12, 2026</p>
+              <p class="meta">Python · scikit-learn · AWS Lambda · S3 · Weather APIs · Machine Learning</p>
               <p>
-                Building a predictive model to analyze road project data and estimate
-                maintenance needs, helping identify patterns in infrastructure planning,
-                project costs, and location-based road conditions.
+                Built a machine-learning risk-ranking system for I-80 near Donner Pass using
+                hourly weather data and manually reviewed closure records. The model predicts
+                24-hour closure risk and publishes Low / Medium / High / Extreme risk results
+                to an S3-backed dashboard.
               </p>
               <ul>
-                <li><strong>Stack:</strong> Python, Pandas, Scikit-learn, SQLite</li>
-                <li><strong>Status:</strong> Developing prediction pipeline</li>
+                <li>Engineered weather-based features from hourly forecast and historical weather data.</li>
+                <li>Trained and compared logistic regression, random forest, and gradient boosting models.</li>
+                <li>Validated performance using chronological winter splits to avoid time leakage.</li>
+                <li>Deployed an AWS Lambda pipeline that saves raw weather, risk history, and latest dashboard JSON to S3.</li>
+                <li>Built a dashboard page to display the latest model risk level and supporting weather context.</li>
               </ul>
             </aside>
           </div>
@@ -247,6 +300,20 @@
           </div>
     
           <div class="coursework-col">
+            <h3>Languages &amp; Web</h3>
+            <div class="coursework-pills">
+              <span>Python</span>
+              <span>SQL</span>
+              <span>JavaScript</span>
+              <span>HTML</span>
+              <span>CSS</span>
+            </div>
+            <p class="coursework-note">
+              Data workflows, analysis, automation, and web interfaces.
+            </p>
+          </div>
+
+          <div class="coursework-col">
             <h3>ML &amp; Data Libraries</h3>
             <div class="coursework-pills">
               <span>pandas</span>
@@ -259,43 +326,44 @@
             </p>
           </div>
     
-          <div class="coursework-col">
-            <h3>Tools</h3>
-            <div class="coursework-pills">
-              <span>GitHub</span>
-              <span>VS Code</span>
-              <span>Jupyter</span>
-            </div>
-          </div>
-    
         </div>
     
         <!-- Row 2 -->
         <div class="coursework-grid">
     
           <div class="coursework-col">
-            <h3>Methods</h3>
+            <h3>Cloud &amp; APIs</h3>
+            <div class="coursework-pills">
+              <span>AWS Lambda</span>
+              <span>Amazon S3</span>
+              <span>REST APIs</span>
+              <span>Weather APIs</span>
+            </div>
+            <p class="coursework-note">
+              Scheduled data collection, cloud storage, and dashboard publishing.
+            </p>
+          </div>
+    
+          <div class="coursework-col">
+            <h3>Developer Tools</h3>
+            <div class="coursework-pills">
+              <span>Git</span>
+              <span>GitHub</span>
+              <span>VS Code</span>
+              <span>Jupyter</span>
+            </div>
+          </div>
+    
+          <div class="coursework-col">
+            <h3>Methods &amp; Workflow</h3>
             <div class="coursework-pills">
               <span>Regression</span>
               <span>Time Series</span>
               <span>Cross-Validation</span>
               <span>Feature Engineering</span>
-            </div>
-          </div>
-    
-          <div class="coursework-col">
-            <h3>Modeling</h3>
-            <div class="coursework-pills">
-              <span>Linear Models</span>
-              <span>Error Analysis</span>
-            </div>
-          </div>
-    
-          <div class="coursework-col">
-            <h3>Workflow</h3>
-            <div class="coursework-pills">
               <span>EDA</span>
               <span>Data Cleaning</span>
+              <span>Error Analysis</span>
             </div>
           </div>
     
@@ -329,7 +397,7 @@
         <div class="page-bar">
           <div>
             <div class="footer-icons">
-              <a class="footer-link icon-link" href="assets/resume/hudson_smith_05:04:2026.pdf" target="_blank" rel="noopener noreferrer" aria-label="Resume">
+              <a class="footer-link icon-link" href="assets/resume/Hudson_Smith_Resume_07_02_26.pdf" target="_blank" rel="noopener noreferrer" aria-label="Resume">
                 <i class="fa-solid fa-file-lines"></i>
               </a>
     
