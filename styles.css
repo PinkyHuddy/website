@@ -125,7 +125,6 @@
   }
   html, body {
     height: 100%;
-    scroll-snap-type: y mandatory;
   }
   
   body {
@@ -141,7 +140,6 @@
   
   .page {
     min-height: 100vh;              /* allow growth */
-    scroll-snap-align: start;
     display: flex;
     justify-content: center;
     padding: 4rem 4rem;

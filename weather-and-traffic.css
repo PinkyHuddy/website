@@ -271,27 +271,6 @@ body {
 .risk-badge.low { color: #25623d; background: #e6f2e9; }
 .risk-badge.unavailable { color: #4b5563; background: #f3f4f6; }
 
-.methodology {
-  display: grid;
-  grid-template-columns: 1fr 2fr;
-  gap: 2rem;
-  margin-top: 3.5rem;
-  padding-top: 1.25rem;
-  border-top: 1px solid #111827;
-}
-
-.methodology h3 {
-  font-size: 1.25rem;
-}
-
-.methodology p {
-  max-width: 70ch;
-  color: #4b5563;
-  font-family: "Playfair Display", serif;
-  font-size: 0.95rem;
-  line-height: 1.6;
-}
-
 .placeholder-note {
   margin-top: 1.3rem;
   padding: 0.8rem 1rem;
